@@ -1,0 +1,16 @@
+name: twotango-messenger
+version: "3.8"
+services:
+  io:
+    stdin_open: true
+    tty: true
+    ports:
+      - 1880:1880
+    container_name: api-server
+    image: nodered/node-red
+  ai:
+    container_name: ai-server
+    image: mindsdb/mindsdb
+    ports:
+      - 47334:47334
+      - 47335:47335
