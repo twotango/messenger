@@ -8,4 +8,15 @@ print("Number of NaN values in 'SignBankEnglishTranslations' column in the origi
 
 Number of NaN values in 'SignBankEnglishTranslations' column in the original dataset: 739
 
-How can we deal with that? 
+How can we deal with that? -- For now, I decided to drop the NaN to avoid introducing a bias with regard to the target variable. But is it possible to synthesize new data based on the underlying patterns of the data set to replace the NaN in the target variable? 
+
+Next, the classes in the target variable are imbalanced. Some classes only have 1 sample. 
+
+In Visual Studio Code, I seem to encounter some weird "unresolved import issues", in particular when it comes to TensorFlow. Could a cloud-based solution be better for our project? 
+
+
+
+
+
+
+
