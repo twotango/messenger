@@ -1,7 +1,7 @@
 # Questions 
 
 - How can I generate my own data?
-2. How can I start a language model locally?
+- How can I start a language model locally?
 
 Research proposal questions: 
 1. How can we address the challenges posed by variations in hand shapes, positions, and orientations to ensure accurate recognition (beginning and end) and interpretation of image gestures in terms of group and global data sets? 
