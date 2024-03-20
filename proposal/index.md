@@ -1,0 +1,5 @@
+# Research proposal
+
+Given the availability of the [ASL database](https://asl-lex.org) as a global sign language dataset, the Neurodiversity Foundation needs a customized personal datasets. We intend to used this for sufficient guessability and high subjective ratings of user-defined gesture sets. We want to produce suitable, context-dependent sentences. Based on this context, we would like to know how we can design a multimodal input interfaces that can be optimized to support seamless transitions between different the following gesture input modes: tap gestures, device motion gestures (via accelerometer and gyroscope data), hand motion gestures (via image/video recognition). The goal is to enhance upon the current standards of keyboard accessibility on devices, by enabling more non-verbal inputs.
+
+For related questions refer to the [questions](questions.md) file.
