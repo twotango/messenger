@@ -1,14 +1,24 @@
-Data strategy: 
+**#Data strategy:**
 
-Based on column analysis, we can group the columns in frequency, iconicity, movement, handshape, thumb, location, guessability, time/duration, flexion, ulnar rotation, spread, selected fingers, sign type, and identifiers (CDISemanticCategory, LemmaID, SignBankEnglishTranslations, SemanticField...)
+**##ASL-Lex Dataset:**
 
-Further, we can group thumb, handshape, location, selected fingers, flexion, ulnar rotation, spread, movement, and time/duration as features of the signs. 
+1. Correlation analysis has shown that distances between major, and minor locations, spread, flexion, ulnar rotation, neighborhood density, parameter neighborhood density, and phonotactic probability are informative for models. Calculating these as additional features might increase accuracy. Even without neighborhood density, parameter neighborhood density, and phonotactic probability, phonological complexity seems to contribute to model performance. Hence, one part of the data strategy should probably be defining a subset of features as above and calculating the phonological complexity from these. This could also potentially contribute to distinguishing meaningful "personal signs" and "meaningless" motion data. 
 
-Correlation analysis has shown that distances between major, and minor locations, spread, flexion, ulnar rotation, neighborhood density, parameter neighborhood density, and phonotactic probability are informative for models. Calculating these as additional features might increase accuracy. Even without neighborhood density, parameter neighborhood density, and phonotactic probability, phonological complexity seems to contribute to model performance. Hence, one part of the data strategy should probably be defining a subset of features as above and calculating the phonological complexity from these. This could also potentially contribute to distinguishing meaningful "personal signs" and "meaningless" motion data. 
+2. Frequency, iconicity, guessability, and sign type are second-level features of the signs that follow their attributes of them. Iconcizity and/or guessability are useful when it comes to a global and family/personal/local data set and the relationship between them. This parameter could help for applications like Sign Work/Remote. 
 
-Frequency, iconicity, guessability, and sign type are second-level features of the signs that follow their attributes of them. Iconcizity and/or guessability are useful when it comes to a global and family/personal/local data set and the relationship between them. This parameter could help for applications like Sign Work/Remote. 
+3. Thumb, Handshape, Location, Selected Fingers, Flexion, Ulnar Rotation, Spread, and Movement: These features can be captured using the accelerometer, gyroscope, and magnetometer sensors present in most smartphones. These sensors can detect the orientation, movement, and spatial positioning of the device, which can be used to infer the handshape, location, and movement characteristics of signs.
 
-Thumb, Handshape, Location, Selected Fingers, Flexion, Ulnar Rotation, Spread, and Movement: These features can be captured using the accelerometer, gyroscope, and magnetometer sensors present in most smartphones. These sensors can detect the orientation, movement, and spatial positioning of the device, which can be used to infer the handshape, location, and movement characteristics of signs.
+Upon discussion Omatola, it is clear that accessibility should be one integral element of the application. Thus, in terms of motion data it is reasonable to limit sensor data to accelerometer and gyroscope for the time being to ensure widespread usability. 
+
+**##Motion Data Feedback Loop:**
+
+1. I will define motion types with a function based on the gyroscope, accelerometer, and orientation (Euler angle) data (stationary, vertical movement, horizontal movement ...). 
+2. Even without orientation data (relative angle of the device to earth as a data stream), this type of data can be inferred through complimentary fusion (roll, path, yaw angles) based on XYZ accelerometer and gyroscope data. 
+3. With that given, I can train a model that predicts motion types and adds them as a new column in the user's data set. Timestamp, frequency, and duration data (frequency and duration inferred) can give additional context as to what motion type is expected at that time point of the day. That information can be particularly useful for the contextual assistance of the app. 
+4. Motion types will be fed into a language model that predicts activity/gesture types. This model should be fine-tuneable, as user feedback should be used to correct/test the model predictions through a feedback loop. The model training should be made almost real-time through Node-RED. 
+
+
+**##Other Considerations##:**
 
 Time/Duration: A (pre-trained) model can be used to determine the on- and offset of "personal gestures." This data can then be populated with a timestamp. 
 
