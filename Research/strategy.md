@@ -18,7 +18,7 @@ Infer motion data even without orientation data through complementary fusion bas
 
 Train a model to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
 
-Integrate motion types into a language model for predicting activity/gesture types. Ensure model fine-tuning based on user feedback through a real-time feedback loop facilitated by Node-RED.
+Integrate motion types into a language model for predicting activity/gesture types. Ensure model fine-tuning based on user feedback through a real-time feedback loop facilitated by Node-RED and potassium library.
 
 **##Other Considerations:**
 
