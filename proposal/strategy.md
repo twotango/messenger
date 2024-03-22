@@ -12,11 +12,11 @@ Prioritize accessibility by focusing on accelerometer and gyroscope data for wid
 
 **##Motion Data Feedback Loop:**
 
-[Define] (motion_type_function.md) motion types using gyroscope, accelerometer, and orientation data, including stationary, vertical, and horizontal movements.
+[Define](motion_type_function.md) motion types using gyroscope, accelerometer, and orientation data, including stationary, vertical, and horizontal movements.
 
-Infer motion data even without orientation data through [complementary fusion] (/Research/Weeks/Week_14/complementary_filter_euler_angle.md) based on XYZ accelerometer and gyroscope data.
+Infer motion data even without orientation data through [complementary fusion](complementary_filter_euler_angle.md) based on XYZ accelerometer and gyroscope data.
 
-Train a [model] (motion_type_model_example.md) to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
+Train a [model](motion_type_model_example.md) to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
 
 Integrate motion types into a language model for predicting activity/gesture types. Ensure model fine-tuning based on user feedback through a real-time feedback loop facilitated by Node-RED and potassium library.
 
