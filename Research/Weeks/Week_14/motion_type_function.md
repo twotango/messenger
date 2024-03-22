@@ -38,5 +38,5 @@ def classify_motion_row(row):
 
     return pd.Series([motion_type])
 
-# Apply the function row-wise to the dataframe
+Apply the function row-wise to the dataframe
 pivot_data4['motion_type'] = pivot_data4.apply(classify_motion_row, axis=1)

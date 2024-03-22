@@ -19,7 +19,8 @@ glasses = glasses.drop(columns= ['NUM', 'EOG_L', 'EOG_R', 'EOG_H', 'EOG_V', 'ACC
 
 scaler = StandardScaler()
 
-# Exclude the 'timestamp' column from standardization
+#### Exclude the 'timestamp' column from standardization
+
 cols_to_scale = [col for col in glasses.columns if col != 'timestamp']
 glasses[cols_to_scale] = scaler.fit_transform(glasses[cols_to_scale])
 
@@ -45,7 +46,8 @@ def complementary_filter(glasses, alpha):
 alpha = 0.98  # Adjust alpha as needed
 roll, pitch, yaw = complementary_filter(glasses, alpha)
 
-# Add Euler angles as new columns to the DataFrame
+#### Add Euler angles as new columns to the DataFrame
+
 glasses['orientation_x'] = roll
 glasses['orientation_y'] = pitch
 glasses['orientation_z'] = yaw
