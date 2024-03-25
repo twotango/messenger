@@ -14,11 +14,19 @@ Prioritize accessibility by focusing on accelerometer and gyroscope data for wid
 
 [Define](motion_type_function.md) motion types using gyroscope, accelerometer, and orientation data, including stationary, vertical, and horizontal movements.
 
-Infer motion data even without orientation data through [complementary fusion](complementary_filter_euler_angle.md) based on XYZ accelerometer and gyroscope data.
-
 Train a [model](motion_type_model_example.md) to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
 
 Integrate motion types into a language model for predicting activity/gesture types. Ensure model fine-tuning based on user feedback through a real-time feedback loop facilitated by Node-RED and potassium library.
+
+Use gesture-labels, predicted motion type, and sensor data to feed a natural language model generating specific motion type description based on gesture type and sensor data. The natural language model should be pre-trained. Data can be prepared through tokenization but for natural language model fine-tuning, the cloud is required. Better motion type descriptions could be used to better predict gesture labels in a feedback loop. 
+
+**##Image Data Feedback Loop:** 
+
+Fine-tune pre-trained image recognition model to detect and extract defined features of signs/hands. The ASL Lex data set has been useful in extracting relevant features. The fine-tuned image recognition model could be trained and tested with available sign language video and image material. 
+
+A function can be defined to calculate phonological complexity. Motion data will be complemented by image input, providing an additional layer of information. If both models are integrated into a larger model, the advantage is that we can potentially have feedback loops between motion, image, and tap model structures. 
+
+Once gesture predictions are made, a connected natural language model (tiny mini?) could conduct semantic analysis and output suggestions in the interface. Tap input can directly be fed into tiny mini, whereby sensor data (including audio) and time can provide context when which input modality is used and when combined. 
 
 **##Other Considerations:**
 
