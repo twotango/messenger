@@ -12,7 +12,7 @@ Prioritize accessibility by focusing on accelerometer and gyroscope data for wid
 
 **##Motion Data Feedback Loop:**
 
-[Define](motion_type_function.md) motion types using gyroscope, accelerometer, and orientation data, including stationary, vertical, and horizontal movements.
+[Define](motion_type_function.md) motion types using gyroscope and accelerometer, including stationary, vertical, and horizontal movements.
 
 Train a [model](motion_type_model_example.md) to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
 
