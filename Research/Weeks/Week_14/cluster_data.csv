@@ -1,0 +1,6 @@
+labels,text
+cluster 1,"[CLS] cluster 1: gyroscope: mean: gyro_x: 0.001, gyro_y: -0.031, gyro_z: -0.031; accelerometer: mean: accel_x: 0.120, accel_y: 0.169, accel_z: -0.049; mean: 0.03898144173546924, standard deviation: 0.07424530060328118, range: 0.21247673123930685 [SEP]"
+cluster 2,"[CLS] cluster 2: gyroscope: mean: gyro_x: 0.008, gyro_y: -0.000, gyro_z: -0.003; accelerometer: mean: accel_x: -0.994, accel_y: -5.772, accel_z: -3.120; mean: -1.618796040208646, standard deviation: 1.7567471649437094, range: 4.059554536845973 [SEP]"
+cluster 3,"[CLS] cluster 3: gyroscope: mean: gyro_x: 0.008, gyro_y: -0.000, gyro_z: -0.003; accelerometer: mean: accel_x: -6.756, accel_y: -1.356, accel_z: 0.550; mean: -0.5892224199453926, standard deviation: 1.3497728272489982, range: 3.8529271389008075 [SEP]"
+cluster 4,"[CLS] cluster 4: gyroscope: mean: gyro_x: 0.008, gyro_y: -0.000, gyro_z: -0.003; accelerometer: mean: accel_x: -0.018, accel_y: -2.796, accel_z: 5.912; mean: 0.556213602086484, standard deviation: 1.320210353723634, range: 4.149576302801863 [SEP]"
+cluster 5,"[CLS] cluster 5: gyroscope: mean: gyro_x: -0.281, gyro_y: 9.036, gyro_z: 9.057; accelerometer: mean: accel_x: 0.113, accel_y: 0.165, accel_z: -0.048; mean: 1.5453026445710831, standard deviation: 2.2082185480988024, range: 5.211937868202837 [SEP]"
