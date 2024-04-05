@@ -73,10 +73,10 @@ Finally, I propose to calculate phonetic complexity, phonetic probability, iconi
 
 **##Mathematical formula:##**
 
-1. Phonetic Complexity = X \times (\text{one-hot encoded motion}) + X \times (\text{one-hot encoded image sign}) + X \times (\text{one-hot encoded screen tap})
-2. Phonotactic Probability = \frac{(\text{Lemma ID} \times X)}{\text{Total Lemma ID}}
-3. Guessability = \frac{(X \times \text{one-hot encoded 1})}{\text{Total sampled of global user survey}}
-4. Iconicity = \frac{(\text{Phonetic Complexity} \times \text{Lemma ID})}{\text{Guessability}}
+1. Phonetic Complexity = X * (one-hot encoded motion) + X * (one-hot encoded image sign) + X * (one-hot encoded screen tap)
+2. Phonotactic Probability = (Lemma ID * X) / Total Lemma ID
+3. Guessability = (X * one-hot encoded 1) / Total sampled of global user survey
+4. Iconicity = (Phonetic Complexity * Lemma ID) / Guessability
 
 **##Other Considerations:**
 
