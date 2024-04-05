@@ -14,11 +14,9 @@ Prioritize accessibility by focusing on accelerometer and gyroscope data for wid
 
 [Define](motion_type_function.md) motion types using gyroscope and accelerometer, including stationary, vertical, and horizontal movements.
 
-Train a [model](motion_type_model_example.md) to predict motion types and incorporate them as a new column in the user's dataset. Utilize timestamps, frequency, and duration data to provide contextual assistance within the app.
+This could be useful for a simple rule-based approach but also limited in scaleability. 
 
-Integrate motion types into a language model for predicting activity/gesture types. Ensure model fine-tuning based on user feedback through a real-time feedback loop facilitated by Node-RED and potassium library.
-
-Use gesture-labels, predicted motion type, and sensor data to feed a natural language model generating specific motion type description based on gesture type and sensor data. The natural language model should be pre-trained. Data can be prepared through tokenization but for natural language model fine-tuning, the cloud is required. Better motion type descriptions could be used to better predict gesture labels in a feedback loop. 
+Therefore, I propose to cluster raw data without assigning motion type descriptions but only predicting gesture meanings. 
 
 **##Image Data Feedback Loop:** 
 
@@ -27,6 +25,58 @@ Fine-tune pre-trained image recognition model to detect and extract defined feat
 A function can be defined to calculate phonological complexity. Motion data will be complemented by image input, providing an additional layer of information. If both models are integrated into a larger model, the advantage is that we can potentially have feedback loops between motion, image, and tap model structures. 
 
 Once gesture predictions are made, a connected natural language model (tiny mini?) could conduct semantic analysis and output suggestions in the interface. Tap input can directly be fed into tiny mini, whereby sensor data (including audio) and time can provide context when which input modality is used and when combined. 
+
+**##Overall Pipeline##:**
+
+For automatization reasons, I favor a clustering approach of data using algorithm like KMeans. To allow for multimodality, I suggest to cluster motion, handshape/sign (image), and screen taps together, if available. 
+
+This could work through API requests, whereby each datastream is uniquely identifiable. Through binary encoding, yes-no, 1-0, different data streams can be included or excluded/skipped in clustering. 
+
+Labels would also be included, if available, otherwise skipped, in clustering. Labels are English translations. 
+
+For further fine-tuning, the clustered data should be classified in gesture vs. no gesture based on baseline model training provided by user in application set up. 
+
+**###The application set up should include###:**
+
+- Personal gesture creation
+- Personal gesture meaning = English translation 
+- X repeats of personal gesture(s)
+- Set up over X time period 
+- Set up X time for user feedback: gesture vs. no gesture 
+
+The set up will be used for baseline training and also fed into global models trained on global data of all users. Upon registration an user should get a unique user ID, data base, and connected Python scripts that will be used to fine-tune the global models that will be loaded. The global models will have separate Python scripts with conditions: skip training process if no user data is available; train if new user data is available. 
+
+**Optionally:** Periodically (e.g., weekly), the personal, on user fine-tuned model will be retrained with updated global models and available user data. 
+
+The gesture vs. no gesture classification will also include phonetic complexity and probability, if available, otherwise skipped. 
+
+After gesture vs. no gesture classification, data not considered as gestures could be tagged with ignore tags through masking while data identified as gestures will be further classified in "label (English translation) known" and "UNKNOWN." If known, the predicted label is assigned when confidence (probability) >= threshold X. If confidence < threshold, the gesture will be classified as UNKNOWN instead. If classified as UNKNOWN, a BERT model will make predictions on English translations and will make new predictions for X periods if confidence remains < threshold. If threshold won't be achieved, the gesture will still be classified as UNKNOWN. Periodic (e.g., weekly), random sample user feedback, will be used to fine-tune the BERT model. 
+
+Upon label "English translation/(Lemma ID (encoded))" achieved, other BERT/NLP models will predict emotional sentiment, semantic field, and lexical class, one model for each. Here, again, the BERT/NLP models can be trained with global user data and loaded and fine-tuned for each user separately. They would have separate Python scripts.
+
+Finally, I propose to calculate phonetic complexity, phonetic probability, iconizity, and guessability (through global user feedback) (optional) and train models on each, too. Feedback loops of BERT models will improve these models while  phonetic complexity, phonetic probability, iconizity, and potentially guessability (optional) can be fed into the gesture vs no gesture classification model, closing the feedback loops. The BERT/NLP models and English Translation (Lemma ID), sentiment, semantic field, and lexical class predictions >= threshold can be fed into clustering model, otherwise skipped, for retraining, integrating these into a feedback loop as well. 
+
+**###Pipeline of models###:** 
+
+1. Clustering based on available data streams (motion, hand image, and screen tap)
+2. Gesture vs. no gesture classification
+3. English translation (Lemma ID) known vs UNKNOWN classification 
+4. BERT/NLP models 
+    1. English translation (Lemma ID) prediction
+    2. Emotional sentiment (positive/negative/neutral) analysis
+    3. Semantic field analysis 
+    4. Lexical class classification 
+5. Phonetic complexity
+6. Phonetic probability 
+7. Iconizity
+8. Guessability (optional)
+
+**##Mathematical formula:##**
+
+1. Phonetic Complexity = X \times (\text{one-hot encoded motion}) + X \times (\text{one-hot encoded image sign}) + X \times (\text{one-hot encoded screen tap})
+2. Phonotactic Probability = \frac{(\text{Lemma ID} \times X)}{\text{Total Lemma ID}}
+3. Guessability = \frac{(X \times \text{one-hot encoded 1})}{\text{Total sampled of global user survey}}
+4. Iconicity = \frac{(\text{Phonetic Complexity} \times \text{Lemma ID})}{\text{Guessability}}
 
 **##Other Considerations:**
 
@@ -43,11 +93,11 @@ Motion or Image Data Only: Leverage motion data for tracking movements and image
 
 Combination of Motion, Image, and Tap Data: Integrate all available data sources to develop robust sign language recognition models, improving accuracy and contextual understanding.
 
+The model trainings should happen in the cloud because they are computationally intensive. 
+
 **##Model Learning and User Feedback:**
 
 Implement a combination of user feedback and model learning to refine "personal gestures" and enhance identifier accuracy.
-
-Prioritize labeled data creation for handshape, location, and movement characteristics based on various sensor inputs and user interactions.
 
 Conduct field studies and beta testing to refine parameters, build a global dataset, and research to what degree multimodal signs would be used, advancing application effectiveness.
 
