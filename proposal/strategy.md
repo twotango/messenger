@@ -32,10 +32,11 @@ A function can be defined to calculate phonological complexity. Motion data will
 
 **Google MediaPipe can be customized as follows:** https://developers.google.com/mediapipe/solutions/customization/gesture_recognizer
 
+Prepare your input as an image file or a numpy array, then convert it to a mediapipe.Image object. If your input is a video file or live stream from a webcam, you can use an external library such as OpenCV to load your input frames as numpy arrays.
 
+The dataset for gesture recognition in model maker requires the following format: <dataset_path>/<label_name>/<img_name>.*. In addition, one of the label names (label_names) must be none. The none label represents any gesture that isn't classified as one of the other gestures.
 
-
-Once gesture predictions are made, a connected natural language model (tiny mini?) could conduct semantic analysis and output suggestions in the interface. Tap input can directly be fed into tiny mini, whereby sensor data (including audio) and time can provide context when which input modality is used and when combined. 
+Possibly MediaPipe allows customization to include minor location and major location of hands, signtype, and any other categories to describe the hand. Users can generally create new sign gestures by recording and naming these. The name will be the gesture label MediaPipe attempts to predict and pass along to TinyLlama. 
 
 **##Overall Pipeline##:**
 
