@@ -12,17 +12,28 @@ Prioritize accessibility by focusing on accelerometer and gyroscope data for wid
 
 **##Motion Data Feedback Loop:**
 
-[Define](motion_type_function.md) motion types using gyroscope and accelerometer, including stationary, vertical, and horizontal movements.
+**Transferring Whisper capabilities to motion data:**
 
-This could be useful for a simple rule-based approach but also limited in scaleability. 
+In the case of motion data, accelerometer and gyroscope data have to be preprocessed to create representations similar to audio spectrograms. This could involve converting the raw motion data into a suitable format, such as time-series data, and then transforming it into a format that resembles log-Mel spectrograms.
 
-Therefore, I propose to cluster raw data without assigning motion type descriptions but only predicting gesture meanings. 
+Once having preprocessed the motion data into a suitable representation, the data can be fed into the Transformer encoder in place of the audio spectrograms. The encoder would then extract important features from the motion data, similar to how it processes audio features.
+
+The decoder would then generate text tokens autoregressively based on the hidden state representations from the encoder and the previously predicted tokens. This process would allow Whisper to incorporate a language model internally, enabling it to generate accurate text transcriptions based on the input motion data.
+
+In summary, while Whisper was initially designed for automatic speech recognition using audio spectrograms, its architecture could potentially be adapted to work with motion data from accelerometers and gyroscopes by preprocessing the data and feeding it into the model in a similar manner.
+https://huggingface.co/blog/fine-tune-whisper
 
 **##Image Data Feedback Loop:** 
 
-Fine-tune pre-trained image recognition model to detect and extract defined features of signs/hands. The ASL Lex data set has been useful in extracting relevant features. The fine-tuned image recognition model could be trained and tested with available sign language video and image material. 
+Fine-tune pre-trained image recognition model Google MediaPipe to detect and extract defined features of signs/hands. The ASL Lex data set has been useful in extracting relevant features. The fine-tuned image recognition model could be trained and tested with available sign language video and image material. 
 
-A function can be defined to calculate phonological complexity. Motion data will be complemented by image input, providing an additional layer of information. If both models are integrated into a larger model, the advantage is that we can potentially have feedback loops between motion, image, and tap model structures. 
+Optional: 
+A function can be defined to calculate phonological complexity. Motion data will be complemented by image input, providing an additional layer of information. If both models are integrated into a larger model, the advantage is that we can potentially have feedback loops between motion, image, and tap model structures. With Whisper and TinyLlama we have to reconsider this usage. 
+
+**Google MediaPipe can be customized as follows:** https://developers.google.com/mediapipe/solutions/customization/gesture_recognizer
+
+
+
 
 Once gesture predictions are made, a connected natural language model (tiny mini?) could conduct semantic analysis and output suggestions in the interface. Tap input can directly be fed into tiny mini, whereby sensor data (including audio) and time can provide context when which input modality is used and when combined. 
 
